@@ -9,6 +9,7 @@ import org.springframework.util.MultiValueMap
 @Transactional
 class LoginService {
   SetupService setupService
+  RestService restService
   static LOGIN_API_URL = "https://cloud.memsource.com/web/api/v3/auth/login"
 
   def login() {
@@ -19,21 +20,7 @@ class LoginService {
   }
 
   def callAuth(Setup setup) {
-    RestBuilder rest = new RestBuilder()
-    rest.restTemplate.messageConverters.removeAll {
-           it.class.name == 'org.springframework.http.converter.json.GsonHttpMessageConverter'
-       }
-     MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>()
-     map.add("userName",setup.userName)
-     map.add("password",setup.password)
-
-
-    def resp = rest.post(LOGIN_API_URL) {
-      accept 'application/json'
-      contentType "application/x-www-form-urlencoded"
-      body map
-    }
-    log.debug(resp.json)
+    def resp = restService.callApi(LOGIN_API_URL,[userName:setup.userName, password:setup.password])
     return resp
   }
 

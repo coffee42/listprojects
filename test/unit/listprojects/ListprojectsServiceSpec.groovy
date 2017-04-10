@@ -18,24 +18,15 @@ class ListprojectsServiceSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void "test parseResponse from JSONArray"() {
       def props = ["id", "name", "status", "sourceLang", "targetLangs"]
-      when: def json = JSON.parse(mockedResponse)
-            def objectList = []
-            json.each { object ->
-            def map = [:]
-              props.each() { key ->
-
-                if (key == "targetLangs") {
-                  map[key]= object[key].toArray().join(", ")
-                }
-                else {
-                  map[key]=object[key]
-                }
-              }
-              objectList << map
-            }
-      then: objectList.size == 2
+      when:
+        JSONArray jsonArray = new JSONArray(mockedResponse)
+        def response = service.parseResponse(jsonArray)
+      then:
+        response instanceof JSONArray
+        response.length() == 2
+        response.getJSONObject(0).names().length() == props.size
     }
 
 }

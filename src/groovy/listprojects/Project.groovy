@@ -1,5 +1,0 @@
-package listprojects
-
-class Project {
-  
-}

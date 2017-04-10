@@ -9,13 +9,21 @@ import spock.lang.Specification
 @TestFor(SetupService)
 class SetupServiceSpec extends Specification {
 
-    def setup() {
-    }
+    void "test findExisting"() {
 
-    def cleanup() {
-    }
+      setup:
+        Setup toFind = new Setup(userName:"something", password: "topSecret")
+        Setup _internal = new Setup(userName:"something", password: "topSecret")
+        GroovyMock(Setup, global: true)
+        Setup.get(_) >> _internal
 
-    void "test something"() {
-      expect: 1==1
+     when:
+        Setup found = service.findExisting()
+
+     then:        
+        found.password == toFind.password
+        found.userName == toFind.userName
+
+
     }
 }

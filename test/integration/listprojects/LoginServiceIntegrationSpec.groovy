@@ -10,18 +10,16 @@ class LoginServiceIntegrationSpec extends IntegrationSpec {
 
     void "test get api call"() {
       setup:
-      def setup = new Setup(userName: "ondrejtecl", password:"ondrejtecl987789")
+      def setup = new Setup(userName: "Some Username", password:"topSecret")
       SetupService setupService = Mock() {
         findExisting() >> setup
       }
       loginService.setupService = setupService
 
       when:
-      def resp = loginService.login();
-
+      def resp = loginService.callAuth(setup);
       then:
       resp != null
       resp.status >= 200
-      resp.json == 1
-    }
+      }
 }

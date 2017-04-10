@@ -22,12 +22,12 @@ class ListprojectsService {
       return result
     }
 
-    private def fetchProjects(String token) {
+      def fetchProjects(String token) {
       RestResponse resp = restService.callApi(LIST_PROJECTS_API_URL,[token:token])
       return resp
     }
 
-    private def parseResponse(JSONArray jsonResp) {
+    def parseResponse(JSONArray jsonResp) {
       JSONArray response = new JSONArray();
       if (jsonResp == null) {
         return response
