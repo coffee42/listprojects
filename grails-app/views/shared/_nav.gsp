@@ -7,12 +7,11 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">Project name</a>
+    <a class="navbar-brand" href="${createLink(controller: 'listprojects')}">List Projects</a>
   </div>
   <div id="navbar" class="collapse navbar-collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">List Projects</a></li>
-      <li><a href="#about">Setup</a></li>
+      <li><a href="${createLink(controller: 'setup')}">Setup</a></li>
     </ul>
   </div><!--/.nav-collapse -->
 </div>

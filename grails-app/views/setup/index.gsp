@@ -16,7 +16,7 @@
 	         <label for="userName" class="sr-only">User name</label>
 					 <input type="text" name="userName" class="form-control" placeholder="User name" value="${fieldValue(bean: setup, field: 'userName')}" required autofocus/>
 	         <label for="password" class="sr-only">Password</label>
-	         <input type="text" id="password" name="password" class="form-control" placeholder="Password" value="${fieldValue(bean: setup, field: 'password')}" required>
+	         <input type="password" id="password" name="password" class="form-control" placeholder="Password" value="${fieldValue(bean: setup, field: 'password')}" required>
 	         <div class="message">
 						 <span></span>
 	         </div>

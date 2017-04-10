@@ -8,7 +8,8 @@ class UrlMappings {
         }
 
         // "/"(controller:"setup")
-				"/"(controller:"listprojects")
+				"/"(controller: "listprojects")
+				"/setup"(controller: "setup")
         "500"(view:'/error')
 	}
 }
